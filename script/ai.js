@@ -16,10 +16,10 @@ module.exports.run = async function ({ api, event, args }) {
     const question = args.join(' ');
     const apiUrl = `https://markdevsapi-2014427ac33a.herokuapp.com/gpt4?ask=${encodeURIComponent(question)}`;
 
-    if (!question) return api.sendMessage("send question babe balik na tayo.", event.threadID, event.messageID);
+    if (!question) return api.sendMessage("send question", event.threadID, event.messageID);
 
     try {
-        api.sendMessage(" nag type pa si Warren pogi...", event.threadID, event.messageID);
+        api.sendMessage("Homer AI Bot is typing..", event.threadID, event.messageID);
 
         const response = await axios.get(apiUrl);
         const answer = response.data.answer;
@@ -27,6 +27,6 @@ module.exports.run = async function ({ api, event, args }) {
         api.sendMessage(`𝗔𝗜 🚀\n━━━━━━━━━━━━━━━━━━━\n𝗤𝘂𝗲𝘀𝘁𝗶𝗼𝗻: ${question}\n━━━━━━━━━━━━━━━━━━━\n𝗔𝗻𝘀𝘄𝗲𝗿: ${answer}\n\nthis bot was create by Warren Hervas pogi\n𝓒𝓻𝓮𝓭𝓲𝓽𝓼: https://www.facebook.com/profile.php?id=61550188503841`, event.threadID, event.messageID); // Added the FB link
     } catch (error) {
         console.error(error);
-        api.sendMessage("hindi ka nya lab sabi ni Warren.", event.threadID);
+        api.sendMessage("error to fetch response", event.threadID);
     }
 };
